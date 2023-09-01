@@ -9,6 +9,11 @@ import UIKit
 
 class DrinkTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var PicImageView: UIImageView!
+    @IBOutlet weak var NameLabel: UILabel!
+    @IBOutlet weak var ColdPriceLabel: UILabel!
+    @IBOutlet weak var HotPriceLabel: UILabel!
+    @IBOutlet weak var HotImageView: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

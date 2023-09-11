@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "5439AFF2-39E1-401D-91D1-5898A416064F"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F9526144-AD2C-418C-9A19-FDCC97153D6C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WOOTEA/View Controllers/DetailViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "DetailViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "F9526144-AD2C-418C-9A19-FDCC97153D6C - 680f883a63053fa9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WOOTEA.DetailViewController.TempButtons.getter : Swift.Optional&lt;Swift.Array&lt;__C.UIButton&gt;&gt;"
+                  moduleName = "WOOTEA"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xuyuru/Documents/ios_sideProject/WOOTEA/WOOTEA/View%20Controllers/DetailViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "F9526144-AD2C-418C-9A19-FDCC97153D6C - a1b274fe6a60cbbd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WOOTEA.DetailViewController.TempButtons.setter : Swift.Optional&lt;Swift.Array&lt;__C.UIButton&gt;&gt;"
+                  moduleName = "WOOTEA"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xuyuru/Documents/ios_sideProject/WOOTEA/WOOTEA/View%20Controllers/DetailViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  uuid = "F9526144-AD2C-418C-9A19-FDCC97153D6C - cc107ab35a50b75a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WOOTEA.DetailViewController.TempButtons.modify : Swift.Optional&lt;Swift.Array&lt;__C.UIButton&gt;&gt;"
+                  moduleName = "WOOTEA"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xuyuru/Documents/ios_sideProject/WOOTEA/WOOTEA/View%20Controllers/DetailViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "F9526144-AD2C-418C-9A19-FDCC97153D6C - cffea242069d960f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WOOTEA.DetailViewController.TempButtons.modify : Swift.Optional&lt;Swift.Array&lt;__C.UIButton&gt;&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "WOOTEA"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xuyuru/Documents/ios_sideProject/WOOTEA/%3Ccompiler-generated%3E"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "F9526144-AD2C-418C-9A19-FDCC97153D6C - 477fe8ab166ea6aa"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WOOTEA.DetailViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; WOOTEA.DetailViewController"
+                  moduleName = "WOOTEA"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xuyuru/Documents/ios_sideProject/WOOTEA/WOOTEA/View%20Controllers/DetailViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "272">
+               </Location>
+               <Location
+                  uuid = "F9526144-AD2C-418C-9A19-FDCC97153D6C - 6f494ce81c5af570"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WOOTEA.DetailViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;WOOTEA.DetailViewController&gt;"
+                  moduleName = "WOOTEA"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xuyuru/Documents/ios_sideProject/WOOTEA/WOOTEA/View%20Controllers/DetailViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "248">
+               </Location>
+               <Location
+                  uuid = "F9526144-AD2C-418C-9A19-FDCC97153D6C - cc107ab35a50b780"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WOOTEA.DetailViewController.TempButtons.modify : Swift.Optional&lt;Swift.Array&lt;__C.UIButton&gt;&gt;"
+                  moduleName = "WOOTEA"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xuyuru/Documents/ios_sideProject/WOOTEA/WOOTEA/View%20Controllers/DetailViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "F9526144-AD2C-418C-9A19-FDCC97153D6C - 477fe8ab166ea670"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WOOTEA.DetailViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; WOOTEA.DetailViewController"
+                  moduleName = "WOOTEA"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xuyuru/Documents/ios_sideProject/WOOTEA/WOOTEA/View%20Controllers/DetailViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "660">
+               </Location>
+               <Location
+                  uuid = "F9526144-AD2C-418C-9A19-FDCC97153D6C - 6f494ce81c5af5aa"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WOOTEA.DetailViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;WOOTEA.DetailViewController&gt;"
+                  moduleName = "WOOTEA"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xuyuru/Documents/ios_sideProject/WOOTEA/WOOTEA/View%20Controllers/DetailViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "636">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

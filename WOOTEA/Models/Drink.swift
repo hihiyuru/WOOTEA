@@ -7,6 +7,28 @@
 
 import Foundation
 
+struct Order: Codable {
+    let name: String
+    let size: String
+    let sugarLevel: String
+    let iceLevel: String
+    let toppingsOne: String
+    let toppingsTwo: String
+    let totalAmount: Double
+    let count: Int
+    let user: String
+}
+
+struct OrderPost: Codable {
+    let fields: Order
+}
+
+struct OrderPostResponse: Codable {
+    var id: String?
+    var createdTime: String
+    var fields: Order
+}
+
 struct Menu: Decodable {
     let categoryName: String
     let items: [Drink]

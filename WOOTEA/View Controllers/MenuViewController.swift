@@ -13,6 +13,7 @@ class MenuViewController: UIViewController {
     var apiMenuData = [Menu]()
     
     @IBOutlet weak var MenuTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         MenuTableView.dataSource = self
@@ -38,9 +39,19 @@ class MenuViewController: UIViewController {
         }.resume()
     }
     
+    @IBSegueAction func goDetailPage(_ coder: NSCoder) -> DetailViewController? {
+        let controller = DetailViewController(coder: coder)
+        if let indexPath = MenuTableView.indexPathForSelectedRow {
+            let selectedSectionIndex = indexPath.section
+            let rowIndex = indexPath.row
+            controller?.currentDrink = apiMenuData[ selectedSectionIndex - 1  ].items[rowIndex]
+        }
+        return controller
+    }
 }
 
 extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1 + apiMenuData.count
     }
@@ -82,29 +93,18 @@ extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
         
     }
     
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-////        if section == 0 {
-//            return nil
-////        } else {
-////            return
-////            
-////        }
-//    }
-    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
             return 0.1
         }
         return 60
     }
+    
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.1
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //        guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(SearchTableViewCell.self)", for: indexPath) as? SearchTableViewCell else {
-        //            fatalError("something wrong")
-        //        }
-        //        return cell
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(SearchTableViewCell.self)", for: indexPath)
             return cell
@@ -125,5 +125,7 @@ extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
             return cell
         }
     }
+    
+    
 }
 

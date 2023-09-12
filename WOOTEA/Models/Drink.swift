@@ -60,3 +60,22 @@ struct Drink: Decodable {
         case adjustableTemperature = "adjustable_temperature"
     }
 }
+
+struct AirtableResponse: Codable {
+    let records: [Record]
+}
+
+struct Record: Codable {
+    let id: String
+    let fields: Order
+}
+
+//刪除資料
+struct Deleted:Codable{
+    let records:[DeleteResponse]
+}
+
+struct DeleteResponse:Codable{
+    let deleted:Bool
+    let id:String
+}

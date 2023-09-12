@@ -11,16 +11,39 @@ import Kingfisher
 class MenuViewController: UIViewController {
     
     var apiMenuData = [Menu]()
+    var autoScrollTimer: Timer?
     
     @IBOutlet weak var MenuTableView: UITableView!
     
+    @IBOutlet weak var BannerScrollView: UIScrollView!
     override func viewDidLoad() {
         super.viewDidLoad()
         MenuTableView.dataSource = self
+        
         fetchMenu()
         // Do any additional setup after loading the view.
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        autoScrollTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(autoScrollToNextPage), userInfo: nil, repeats: true)
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        autoScrollTimer?.invalidate()
+    }
+    @objc func autoScrollToNextPage() {
+        let width = BannerScrollView.frame.size.width
+        let currentPage = Int(BannerScrollView.contentOffset.x / width)
+        let totalPages = Int(BannerScrollView.contentSize.width / width)
+        
+        if currentPage + 1 == totalPages {
+            // 如果當前頁面是最後一頁，則回到第一頁
+            BannerScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+        } else {
+            // 否則，滾動到下一頁
+            BannerScrollView.setContentOffset(CGPoint(x: width * CGFloat(currentPage + 1), y: 0), animated: true)
+        }
+    }
     func fetchMenu() {
         let stringUrl = "https://raw.githubusercontent.com/hihiyuru/drinkApi/main/menu.json"
         guard let url = URL(string: stringUrl) else { return }

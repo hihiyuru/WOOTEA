@@ -39,7 +39,7 @@
                                         <rect key="frame" x="0.0" y="60" width="393" height="177"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="pXF-sI-cNz">
-                                                <rect key="frame" x="0.0" y="0.0" width="786" height="177"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="1965" height="177"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="banner01" translatesAutoresizingMaskIntoConstraints="NO" id="Wo8-GK-Zwg">
                                                         <rect key="frame" x="0.0" y="0.0" width="393" height="177"/>
@@ -51,6 +51,24 @@
                                                         <rect key="frame" x="393" y="0.0" width="393" height="177"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="177" id="ovp-TH-ByX"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="banner03" translatesAutoresizingMaskIntoConstraints="NO" id="fzG-Cg-ziZ">
+                                                        <rect key="frame" x="786" y="0.0" width="393" height="177"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="177" id="DjN-cv-wZ7"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="banner04" translatesAutoresizingMaskIntoConstraints="NO" id="TG7-F0-t0C">
+                                                        <rect key="frame" x="1179" y="0.0" width="393" height="177"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="177" id="Low-Jq-7cO"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="banner05" translatesAutoresizingMaskIntoConstraints="NO" id="Q5R-Ow-mkm">
+                                                        <rect key="frame" x="1572" y="0.0" width="393" height="177"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="177" id="RZW-ZD-uhr"/>
                                                         </constraints>
                                                     </imageView>
                                                 </subviews>
@@ -186,7 +204,7 @@
                                                     </constraints>
                                                 </tableViewCellContentView>
                                             </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DrinkTableViewCell" rowHeight="94" id="OxJ-VM-77L" customClass="DrinkTableViewCell" customModule="WOOTEA" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="DrinkTableViewCell" rowHeight="94" id="OxJ-VM-77L" customClass="DrinkTableViewCell" customModule="WOOTEA" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="88.666664123535156" width="393" height="94"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OxJ-VM-77L" id="5Da-Qk-LQD">
@@ -313,6 +331,7 @@
                     <tabBarItem key="tabBarItem" title="菜單" image="list.dash" catalog="system" id="uhc-Nu-iYp"/>
                     <navigationItem key="navigationItem" id="xD2-ev-625"/>
                     <connections>
+                        <outlet property="BannerScrollView" destination="Gu3-dj-3bL" id="Dyy-cN-KGb"/>
                         <outlet property="MenuTableView" destination="dOA-TB-8TS" id="vhS-1H-prc"/>
                     </connections>
                 </viewController>
@@ -329,27 +348,39 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="hEK-wq-d5j">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="60"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="訂單" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1u5-2g-q5A">
-                                    <rect key="frame" x="10" y="10" width="373" height="24"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                    <nil key="textColor"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="訂單" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1u5-2g-q5A">
+                                    <rect key="frame" x="10" y="10" width="373" height="40"/>
+                                    <fontDescription key="fontDescription" name="Palatino-Bold" family="Palatino" pointSize="24"/>
+                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="zin-TC-p16">
+                                    <rect key="frame" x="176.66666666666666" y="80" width="40" height="37"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="40" id="JW2-bB-rPI"/>
+                                    </constraints>
+                                    <color key="color" red="0.93725490199999995" green="0.56078431370000004" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </activityIndicatorView>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <color key="backgroundColor" systemColor="systemBrownColor"/>
                             <constraints>
-                                <constraint firstItem="1u5-2g-q5A" firstAttribute="leading" secondItem="hEK-wq-d5j" secondAttribute="leading" constant="10" id="BUe-0r-y05"/>
+                                <constraint firstItem="1u5-2g-q5A" firstAttribute="centerY" secondItem="hEK-wq-d5j" secondAttribute="centerY" id="4kC-X4-kGH"/>
+                                <constraint firstItem="1u5-2g-q5A" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="hEK-wq-d5j" secondAttribute="leading" id="BUe-0r-y05"/>
                                 <constraint firstAttribute="bottom" secondItem="1u5-2g-q5A" secondAttribute="bottom" constant="10" id="dA9-6a-4gU"/>
-                                <constraint firstAttribute="trailing" secondItem="1u5-2g-q5A" secondAttribute="trailing" constant="10" id="doL-qV-YdS"/>
+                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="1u5-2g-q5A" secondAttribute="trailing" id="doL-qV-YdS"/>
+                                <constraint firstItem="1u5-2g-q5A" firstAttribute="centerX" secondItem="hEK-wq-d5j" secondAttribute="centerX" id="iFC-0b-jPk"/>
+                                <constraint firstItem="zin-TC-p16" firstAttribute="centerX" secondItem="1u5-2g-q5A" secondAttribute="centerX" id="pC7-Ct-8vD"/>
                                 <constraint firstItem="1u5-2g-q5A" firstAttribute="top" secondItem="hEK-wq-d5j" secondAttribute="top" constant="10" id="qtj-xN-rxI"/>
+                                <constraint firstItem="1u5-2g-q5A" firstAttribute="leading" secondItem="hEK-wq-d5j" secondAttribute="leading" constant="10" id="tyD-EG-eDc"/>
+                                <constraint firstItem="zin-TC-p16" firstAttribute="top" secondItem="1u5-2g-q5A" secondAttribute="bottom" constant="30" id="wd3-9m-oqQ"/>
                             </constraints>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="OderListTableViewCell" id="eAh-uQ-4sF" customClass="OderListTableViewCell" customModule="WOOTEA" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="94" width="393" height="103.66666412353516"/>
+                                <rect key="frame" x="0.0" y="110" width="393" height="103.66666412353516"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eAh-uQ-4sF" id="eU3-Cq-34D">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="103.66666412353516"/>
@@ -446,6 +477,9 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="訂單" image="cart.fill" catalog="system" id="cIh-y9-EDJ"/>
+                    <connections>
+                        <outlet property="LoadingActivityIndicatorView" destination="zin-TC-p16" id="Muc-D2-p4z"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kbW-bL-1qK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="s3v-ry-hiz">
@@ -1317,6 +1351,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="fhz-wU-W9Z" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7cl-hg-vEv">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" systemColor="systemBrownColor"/>
                         <color key="selectedImageTintColor" red="0.93725490199999995" green="0.56078431370000004" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1337,7 +1372,9 @@
     <resources>
         <image name="banner01" width="1000" height="460"/>
         <image name="banner02" width="1000" height="460"/>
+        <image name="banner03" width="1000" height="460"/>
         <image name="banner04" width="1000" height="460"/>
+        <image name="banner05" width="1000" height="460"/>
         <image name="cart.fill" catalog="system" width="128" height="102"/>
         <image name="chevron.down" catalog="system" width="128" height="70"/>
         <image name="flame" catalog="system" width="106" height="128"/>

@@ -12,6 +12,7 @@ class OderListTableViewController: UITableViewController {
     var drinksApiData = [Record]()
     
     
+    @IBOutlet weak var LoadingActivityIndicatorView: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +25,7 @@ class OderListTableViewController: UITableViewController {
 
     
     func fetchDrinks() {
+        LoadingActivityIndicatorView.isHidden = false
         let urlString = "https://api.airtable.com/v0/appE7K437QBucbxsg/order"
         guard let url = URL(string: urlString) else { return }
         
@@ -38,6 +40,7 @@ class OderListTableViewController: UITableViewController {
                 self.drinksApiData = decodedData.records
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
+                    self.LoadingActivityIndicatorView.isHidden = true
                 }
             } catch {
                 print("Error decoding: \(error)")

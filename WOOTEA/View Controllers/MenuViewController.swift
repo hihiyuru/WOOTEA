@@ -12,25 +12,40 @@ class MenuViewController: UIViewController {
     
     var apiMenuData = [Menu]()
     var autoScrollTimer: Timer?
+    var isShowMore = false
     
     @IBOutlet weak var MenuTableView: UITableView!
-    
     @IBOutlet weak var BannerScrollView: UIScrollView!
+    @IBOutlet weak var MoreButton: UIButton!
+    @IBOutlet weak var CategoryCollectionView: UICollectionView!
+    @IBOutlet var CatgoriesButtons: [UIButton]!
+    
+    @IBOutlet weak var CategoriesView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         MenuTableView.dataSource = self
-        
+        CategoryCollectionView.dataSource = self
+        CategoryCollectionView.delegate = self
+        showCategories()
         fetchMenu()
-        // Do any additional setup after loading the view.
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         autoScrollTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(autoScrollToNextPage), userInfo: nil, repeats: true)
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         autoScrollTimer?.invalidate()
     }
+    
+    func showCategories() {
+        CategoriesView.isHidden = !isShowMore
+            let imageName = isShowMore ? "chevron.up" : "chevron.down"
+            MoreButton.setImage(UIImage(systemName: imageName), for: .normal)
+    }
+    
     @objc func autoScrollToNextPage() {
         let width = BannerScrollView.frame.size.width
         let currentPage = Int(BannerScrollView.contentOffset.x / width)
@@ -44,6 +59,7 @@ class MenuViewController: UIViewController {
             BannerScrollView.setContentOffset(CGPoint(x: width * CGFloat(currentPage + 1), y: 0), animated: true)
         }
     }
+    
     func fetchMenu() {
         let stringUrl = "https://raw.githubusercontent.com/hihiyuru/drinkApi/main/menu.json"
         guard let url = URL(string: stringUrl) else { return }
@@ -54,6 +70,11 @@ class MenuViewController: UIViewController {
                     self.apiMenuData = try decoder.decode([Menu].self, from: data)
                     DispatchQueue.main.async {
                         self.MenuTableView.reloadData()
+                        self.CategoryCollectionView.reloadData()
+                        self.CatgoriesButtons.enumerated().forEach { (index, button) in
+                            button.setTitle(self.apiMenuData[index].categoryName, for: .normal)
+                            button.tag = index
+                        }
                     }
                 } catch {
                     print("drinkApi出錯了")
@@ -67,31 +88,35 @@ class MenuViewController: UIViewController {
         if let indexPath = MenuTableView.indexPathForSelectedRow {
             let selectedSectionIndex = indexPath.section
             let rowIndex = indexPath.row
-            controller?.currentDrink = apiMenuData[ selectedSectionIndex - 1  ].items[rowIndex]
+            controller?.currentDrink = apiMenuData[ selectedSectionIndex ].items[rowIndex]
         }
         return controller
+    }
+    @IBAction func showMoreCategories(_ sender: UIButton) {
+        isShowMore = !isShowMore
+        showCategories()
+    }
+    @IBAction func selectedCategory(_ sender: UIButton) {
+        print("點擊", sender.tag)
+        let menuTableViewIndexPath = IndexPath(row: 0, section: sender.tag)
+        MenuTableView.scrollToRow(at: menuTableViewIndexPath, at: .top, animated: true)
     }
 }
 
 extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1 + apiMenuData.count
+        return apiMenuData.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 1
-        } else {
-            let index = section - 1
-            return apiMenuData[index].items.count
-        }
+        
+        return apiMenuData[section].items.count
+
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 0 {
-            return nil
-        } else {
+        
             let headerView = UIView()
             headerView.backgroundColor = .white
             
@@ -99,11 +124,9 @@ extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
             label.translatesAutoresizingMaskIntoConstraints = false
             label.font = UIFont.boldSystemFont(ofSize: 18) // Set your desired font and size here
             label.textColor = UIColor(cgColor: CGColor(red: 239/255, green: 143/255, blue: 48/255, alpha: 1))
-            label.text = apiMenuData[section - 1].categoryName
+            label.text = apiMenuData[section].categoryName
             
             headerView.addSubview(label)
-            
-            // Add constraints for label
             NSLayoutConstraint.activate([
                 label.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 15),
                 label.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -15),
@@ -111,15 +134,11 @@ extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
             ])
             
             return headerView
-        }
         
         
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 {
-            return 0.1
-        }
         return 60
     }
     
@@ -128,27 +147,42 @@ extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "\(SearchTableViewCell.self)", for: indexPath)
-            return cell
-        } else {
+        
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(DrinkTableViewCell.self)", for: indexPath) as? DrinkTableViewCell else { fatalError("something wrong") }
-            cell.PicImageView.kf.setImage(with: apiMenuData[indexPath.section - 1].items[indexPath.row].imageUrl)
+            cell.PicImageView.kf.setImage(with: apiMenuData[indexPath.section].items[indexPath.row].imageUrl)
             cell.PicImageView.backgroundColor = .white
-            cell.NameLabel.text = apiMenuData[indexPath.section - 1].items[indexPath.row].name
-            if apiMenuData[indexPath.section - 1].items[indexPath.row].isHasHot {
-                cell.HotPriceLabel.text = String(apiMenuData[indexPath.section - 1].items[indexPath.row].price)
+            cell.NameLabel.text = apiMenuData[indexPath.section].items[indexPath.row].name
+            if apiMenuData[indexPath.section].items[indexPath.row].isHasHot {
+                cell.HotPriceLabel.text = String(apiMenuData[indexPath.section].items[indexPath.row].price)
                 cell.HotImageView.isHidden = false
             } else {
                 cell.HotPriceLabel.text = .none
                 cell.HotImageView.isHidden = true
             }
-            cell.ColdPriceLabel.text = String(apiMenuData[indexPath.section - 1].items[indexPath.row].price)
+            cell.ColdPriceLabel.text = String(apiMenuData[indexPath.section].items[indexPath.row].price)
             
             return cell
-        }
     }
     
     
 }
 
+extension MenuViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        print("點擊我了")
+//    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return apiMenuData.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(CategoryCollectionViewCell.self)", for: indexPath) as! CategoryCollectionViewCell
+        cell.CategoryButtton.setTitle(apiMenuData[indexPath.row].categoryName, for: .normal)
+        cell.CategoryButtton.tag = indexPath.row
+        return cell
+    }
+    
+    
+}

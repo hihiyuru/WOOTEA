@@ -26,6 +26,7 @@ class DetailViewController: UIViewController {
             TotalAmountLabel.text = "總金額: \(totalAmount)元"
         }
     }
+    var loginName = ""
     
     @IBOutlet weak var oderScrollView: UIScrollView!
     @IBOutlet weak var DrinkName: UILabel!
@@ -36,14 +37,14 @@ class DetailViewController: UIViewController {
     @IBOutlet var SizeButton: [UIButton]!
     @IBOutlet var ToppingButtons: [UIButton]!
     @IBOutlet weak var countLabel: UILabel!
-    
     @IBOutlet weak var TempTopStackView: UIStackView!
     @IBOutlet weak var TempBottomStackView: UIStackView!
     @IBOutlet weak var sweetTopStackView: UIStackView!
     @IBOutlet weak var SweetBottomStackView: UIStackView!
     @IBOutlet weak var TotalAmountLabel: UILabel!
-    
     @IBOutlet weak var userTextField: UITextField!
+    @IBOutlet weak var submitButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -118,6 +119,17 @@ class DetailViewController: UIViewController {
             $0.titleLabel?.lineBreakMode = .byWordWrapping
             setButtonStyle(button: $0)
         }
+        let UserDefaults = UserDefaults.standard
+        if let loginUserName = UserDefaults.string(forKey: "user") {
+            loginName = loginUserName
+            submitButton.setTitle("訂購", for: .normal)
+            submitButton.layer.cornerRadius = 5
+        } else {
+            submitButton.setTitle("登入後\n訂購", for: .normal)
+            submitButton.titleLabel?.textAlignment = .center
+            submitButton.titleLabel?.lineBreakMode = .byWordWrapping
+            submitButton.layer.cornerRadius = 5
+        }
     }
     
     // 此函數設置給定按鈕的樣式
@@ -133,6 +145,7 @@ class DetailViewController: UIViewController {
         DrinkImageView.kf.setImage(with: currentDrink.imageUrl)
         DescriptionLabel.text = currentDrink?.description
         totalAmount = currentDrink.price
+        userTextField.text = loginName
         
         // 更新溫度按鈕
         if !currentDrink.adjustableTemperature {
@@ -331,6 +344,14 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func sendOder(_ sender: UIButton){
+        print("loginName", loginName)
+        print("loginVC", storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as? UIViewController ?? "???")
+        if loginName == "", let loginVC = storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as? UIViewController {
+            
+            loginVC.modalPresentationStyle = .fullScreen
+            present(loginVC, animated: true, completion: nil)
+            return
+        }
         if !checkData() {
             return
         }

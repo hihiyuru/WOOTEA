@@ -50,6 +50,9 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func changStatus(_ sender: UIButton) {
+        usernameTextField.text = ""
+        emailTextField.text = ""
+        passwordTextField.text = ""
         changSign()
     }
     
@@ -92,18 +95,25 @@ class LoginViewController: UIViewController {
                     do {
                         let content = try JSONDecoder().decode(SignInResponse.self, from: data)
                         DispatchQueue.main.async {
-                            showAlert(on: self, title: "登入成功", message: "", buttonTitle: "開始訂餐") { _ in
-                                self.usernameTextField.text = ""
-                                self.emailTextField.text = ""
-                                self.passwordTextField.text = ""
-                                // 儲存資料
-                                let usrDefaults = UserDefaults.standard
-                                usrDefaults.set(content.login, forKey: "user")
-                                // 跳轉
-                                if let tabBarVC = self.storyboard?.instantiateViewController(withIdentifier: "AppTabBarController") as? UITabBarController {
-                                    tabBarVC.modalPresentationStyle = .fullScreen
-                                    self.present(tabBarVC, animated: true, completion: nil)
+                            
+                            
+                            if ((content.errorCode) != nil) {
+                                showAlert(on: self, title: "登入失敗\(content.errorCode!)", message: "\(content.message!)", buttonTitle: "請再試一次")
+                            } else {
+                                showAlert(on: self, title: "登入成功", message: "", buttonTitle: "開始訂餐") { _ in
+                                    self.usernameTextField.text = ""
+                                    self.emailTextField.text = ""
+                                    self.passwordTextField.text = ""
+                                    // 儲存資料
+                                    let usrDefaults = UserDefaults.standard
+                                    usrDefaults.set(content.login, forKey: "user")
+                                    // 跳轉
+                                    if let tabBarVC = self.storyboard?.instantiateViewController(withIdentifier: "AppTabBarController") as? UITabBarController {
+                                        tabBarVC.modalPresentationStyle = .fullScreen
+                                        self.present(tabBarVC, animated: true, completion: nil)
+                                    }
                                 }
+                                
                             }
                         }
                         
@@ -147,14 +157,16 @@ class LoginViewController: UIViewController {
                 
                 if let data = data {
                     do {
-                        _ = try JSONDecoder().decode(SignUpResponse.self, from: data)
+                        let content = try JSONDecoder().decode(SignUpResponse.self, from: data)
                         DispatchQueue.main.async {
-                            showAlert(on: self, title: "註冊成功", message: "請重新登入", buttonTitle: "馬上去登入") { _ in
-                                self.usernameTextField.text = ""
-                                self.emailTextField.text = ""
-                                self.passwordTextField.text = ""
-                                self.changSign()
+                            if ((content.errorCode) != nil) {
+                                showAlert(on: self, title: "註冊失敗\(content.errorCode!)", message: "\(content.message!)", buttonTitle: "重新註冊")
+                            } else {
+                                showAlert(on: self, title: "註冊成功", message: "請重新登入", buttonTitle: "馬上去登入") { _ in
+                                    self.changSign()
+                                }
                             }
+                            
                         }
                         
                     } catch {
@@ -167,14 +179,5 @@ class LoginViewController: UIViewController {
             print("Failed to encode User.")
         }
     }
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }
